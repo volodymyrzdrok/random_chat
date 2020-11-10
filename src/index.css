@@ -5,9 +5,26 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(177, 215, 243);
+
+  width: 900px;
+  margin: 0 auto 
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+a{
+  text-decoration: none;
+
+}
+ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+/* .chatContent{
+display: flex;
+} */

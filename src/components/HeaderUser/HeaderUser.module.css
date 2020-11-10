@@ -1,0 +1,35 @@
+.header{
+
+
+    width: 340px;
+    outline: 1px solid rgb(104, 102, 102);
+}
+
+.headerContainer{
+
+    /* height: 70px; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.image{
+
+    width: 50px;
+}
+.userName{
+
+}
+.logout{
+
+}
+.form{
+
+}
+.label{
+
+
+}
+.input{
+outline:  none;
+
+}

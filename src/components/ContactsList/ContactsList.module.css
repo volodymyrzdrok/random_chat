@@ -1,0 +1,42 @@
+.contactsList{
+    width: 340px;
+    outline: 1px solid rgb(104, 102, 102);
+
+}
+
+.title{
+    margin: 0;
+}
+.list{
+    
+}
+.item{
+    outline: 1px solid rgb(104, 102, 102);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0px;
+  
+}
+.image{
+    width: 50px;
+    border-radius: 50%;
+}
+.descContainer{}
+.name{
+    margin: 0;
+    font-weight: 600    ;
+}
+.description{
+    margin: 0;
+    font-size: 12px;
+    font-style: italic;
+}
+.date{
+    font-size: 10px;
+}
+.chatContactslist{
+
+display: flex;
+
+}

@@ -26,6 +26,16 @@ const ContactsList = props => {
               Contacts
             </NavLink>
           </li>
+          {visibleContacts.length === 0 && (
+            <li>
+              <p className={styles.title}>
+                not found <b>{filter},</b>
+                <br /> please click "Enter"
+                <br /> or button to add a new contact
+              </p>
+            </li>
+          )}
+
           {visibleContacts.map(({ id, img, name, historyM, date }) => (
             <li key={id}>
               <NavLink

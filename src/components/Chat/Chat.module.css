@@ -43,7 +43,6 @@ letter-spacing: 1.5px;
   padding: 10px 30px;   
   overflow-y: scroll;
     scroll-behavior: smooth;
-    /* overflow-x: hidden; */
 }
 .list::-webkit-scrollbar {
     width: 8px;
@@ -66,17 +65,15 @@ letter-spacing: 1.5px;
 }
 
 .itemTextNOImgContainer{
-    
-    /* display: flex; */
-    /* flex-wrap: wrap; */
 }
 
 .itemMyMessage{
     composes: item;
-    /* margin-left: 40%; */
-     /* display: flex;
+    
+     display: flex;
      flex-direction: column;
-     align-items: flex-end;  */
+     align-items: flex-end; 
+     
     }
     .itemBot{
         composes:  item;
@@ -108,18 +105,19 @@ letter-spacing: 1.5px;
 }
 .itemTextMy
 {composes:  itemText;
-    /* width: inherit; */
-    
-    /* max-width: 55%; */
    
 }
 
 .itemData{
     font-size: 10px;
    color:rgb(123, 123, 123);
-   
-}
 
+}
+.itemDataBot{
+
+    composes:  itemData;
+    margin-left: 60px;
+}
 
 .form{
 position: relative;

@@ -32,21 +32,21 @@ const HeaderUser = () => {
     ),
   );
 
-  const addContact = e => {
-    const repeatContact = contacts.find(c => c.name === e.target[0].value);
-    if (e.target[0].value.replace(/\s/g, '') === '' || repeatContact) {
+  const addContact = () => {
+    const repeatContact = contacts.find(c => c.name === valueFilter);
+    if (valueFilter.replace(/\s/g, '') === '' || repeatContact) {
       alert('некоректні дані!');
     } else {
       const contact = {
         id: v4(),
-        name: e.target[0].value,
+        name: valueFilter,
         historyM: [],
         img: imgAvatar,
         date: Date.now(),
       };
 
       dispatch(addNewContact(contact));
-      e.target[0].value = '';
+      // valueFilter = '';
     }
   };
 
@@ -78,8 +78,8 @@ const HeaderUser = () => {
           ></GoogleLogout>
         </div>
         <form
-          onSubmit={e => {
-            addContact(e);
+          onSubmit={() => {
+            addContact();
           }}
           autoComplete="off"
           className={styles.form}
@@ -95,7 +95,11 @@ const HeaderUser = () => {
           <button className={styles.button}>a</button>
         </form>
       </div>
-      <Route path={routes.contact} component={ContactsList} />
+      <Route
+        path={routes.contact}
+        component={ContactsList}
+        // addContact={addContact}
+      />
       {/* <ContactsList /> */}
     </>
   );

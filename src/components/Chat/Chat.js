@@ -121,7 +121,9 @@ const Chat = () => {
                       {item.message}
                     </p>
                   </div>
-                  <span className={styles.itemData}>
+                  <span
+                    className={item.bot ? styles.itemDataBot : styles.itemData}
+                  >
                     {moment(item.date).format('l,LT ')}
                   </span>
                 </li>

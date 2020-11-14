@@ -14,9 +14,9 @@ import storage from 'redux-persist/lib/storage';
 import allReducersSlice from './slice';
 
 const persistConfig = {
-  key: 'userName',
+  key: 'session',
   storage,
-  whitelist: ['userName', 'contacts'],
+  whitelist: ['session', 'contacts'],
 };
 
 const store = configureStore({

@@ -1,8 +1,9 @@
 import axios from 'axios';
 
 const URL = 'https://api.chucknorris.io/jokes/random';
-const API_Pixabay = '15400175-8ce22b8808542891276b8dfa1';
-const randomNumber = Math.floor(Math.random() * 201);
+const api_key = `c89f43b1c825df5dc6e73406f0f79577`;
+const urlMovie = 'https://api.themoviedb.org/3/';
+const randomNumber = Math.floor(Math.random() * 99);
 
 export const fetchRandomAnswer = () => {
   return axios.get(URL).then(response => response.data.value);
@@ -10,10 +11,6 @@ export const fetchRandomAnswer = () => {
 
 export const fetchRandomImages = () => {
   return axios
-    .get(
-      `https://pixabay.com/api/?q=face_dog&per_page=200&key=${API_Pixabay}&image_type=photo&orientation=horizontal`,
-    )
-    .then(
-      response => response.data.hits.map(el => el.webformatURL)[randomNumber],
-    );
+    .get(`${urlMovie}movie/${'299534'}/credits?api_key=${api_key}`)
+    .then(response => response.data.cast[randomNumber].profile_path);
 };

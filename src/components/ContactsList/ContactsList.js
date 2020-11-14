@@ -3,23 +3,36 @@ import styles from './ContactsList.module.css';
 import { useSelector } from 'react-redux';
 import Chat from '../Chat/Chat';
 import { Route, NavLink, useLocation } from 'react-router-dom';
+import routes from '../../services/routes';
 
 const ContactsList = props => {
   const contacts = useSelector(state => state.contacts);
+  const filter = useSelector(state => state.filter);
+
+  const visibleContacts = contacts.filter(contact =>
+    contact.name.toLowerCase().includes(filter.toLowerCase()),
+  );
+
   let location = useLocation();
   const { url, path } = props.match;
 
   return (
-    <div className={styles.chatContactslist}>
+    <div className={styles.chatContent}>
       <div className={styles.contactsList}>
-        <h3 className={styles.title}>Chats</h3>
         <ul className={styles.list}>
-          {contacts.map(({ id, img, name, historyM, date }) => (
+          <li>
+            <NavLink to={routes.contact} className={styles.title}>
+              Contacts
+              {/* <h3 className={styles.title}>Contacts</h3> */}
+            </NavLink>
+          </li>
+          {visibleContacts.map(({ id, img, name, historyM, date }) => (
             <li key={id}>
               <NavLink
+                activeClassName={styles.itemActive}
                 className={styles.item}
                 to={{
-                  pathname: `${url}/${id}`,
+                  pathname: `${url}/:${id}`,
                   state: { from: location },
                 }}
               >
@@ -31,20 +44,19 @@ const ContactsList = props => {
                       historyM[historyM.length - 1].message}
                   </p>
                 </div>
-                <span className={styles.date}>
+                <p className={styles.date}>
                   {historyM.length > 0
                     ? new Date(
                         historyM[historyM.length - 1].date,
                       ).toLocaleDateString()
                     : new Date(date).toLocaleDateString()}
-                </span>
+                </p>
               </NavLink>
-              {/* <Route path={`${path}`} component={Chat} /> */}
             </li>
           ))}
         </ul>
       </div>
-      {/* <Chat /> */}
+
       <Route path={`${path}`} component={Chat} />
     </div>
   );

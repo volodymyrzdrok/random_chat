@@ -11,45 +11,56 @@ const Chat = () => {
   const [randomMessage, setRandomMessage] = useState(null);
   const dispatch = useDispatch();
   let location = useLocation();
-  const contactId = location.pathname.slice(9);
+  const contactId = location.pathname.slice(7);
+
   const contact = contacts.find(contact => String(contact.id) === contactId);
 
+  const [randomObject, setRandomObject] = useState(null);
+
+  fetchRandomAnswer().then(result => setRandomMessage(result));
+
   useEffect(() => {
-    fetchRandomAnswer().then(result => setRandomMessage(result));
-  }, [contact]);
+    if (randomObject)
+      setTimeout(() => {
+        const historyM = [...contact.historyM, randomObject];
+        const contactUpdate = { ...contact, historyM };
+        dispatch(addNewMessage(contactUpdate));
+
+        setRandomObject(null);
+      }, 3000);
+  }, [randomObject]);
 
   const addMessage = e => {
     e.preventDefault();
-    const messageNew = {
-      id: Date.now(),
-      message: e.target[0].value,
-      date: Date.now(),
-    };
-    const messageNewBot = {
-      id: v4(),
-      message: randomMessage,
-      date: Date.now(),
-      bot: true,
-    };
-    e.target[0].value = '';
-
-    const historyM = [...contact.historyM, messageNew];
-    const contactUpdate = { ...contact, historyM };
-
-    dispatch(addNewMessage(contactUpdate));
-
-    setTimeout(() => {
-      const historyM = [...contact.historyM, messageNewBot];
+    if (e.target[0].value.replace(/\s/g, '') === '') {
+      alert('некоректні дані!');
+    } else {
+      const messageNew = {
+        id: Date.now(),
+        message: e.target[0].value,
+        date: Date.now(),
+      };
+      e.target[0].value = '';
+      const historyM = [...contact.historyM, messageNew];
       const contactUpdate = { ...contact, historyM };
       dispatch(addNewMessage(contactUpdate));
-      console.log('бот бот ', contact);
-    }, 3000);
-
-    console.log('юсер додав', contact);
+      setRandomObject({
+        id: v4(),
+        message: randomMessage,
+        date: Date.now(),
+        bot: true,
+      });
+    }
   };
 
   const deleteContact = id => {
     dispatch(removeContact(id));
+  };
+
+  const deleteHistoryM = () => {
+    const historyM = [];
+    const contactUpdate = { ...contact, historyM };
+    dispatch(addNewMessage(contactUpdate));
   };
 
   return (
@@ -64,12 +75,20 @@ const Chat = () => {
               width="50"
             />
             <h3 className={styles.titleName}>{contact.name}</h3>
-            <button
-              onClick={() => deleteContact(contact.id)}
-              className={styles.titleButton}
-            >
-              delete contact
-            </button>
+            <div className="">
+              <button
+                onClick={() => deleteContact(contact.id)}
+                className={styles.titleButton}
+              >
+                delete contact
+              </button>
+              <button
+                onClick={() => deleteHistoryM()}
+                className={styles.titleButton}
+              >
+                delete history
+              </button>
+            </div>
           </div>
           <ul className={styles.list}>
             {contact.historyM.length > 0 &&
@@ -106,15 +125,13 @@ const Chat = () => {
             autoComplete="off"
             className={styles.form}
           >
-            <label className={styles.label}>
-              type your message
-              <input
-                className={styles.input}
-                type="text"
-                // value=
-                // onChange={e => dispatch((e.target.value))}
-              />
-            </label>
+            <input
+              required
+              placeholder="Type your message"
+              className={styles.input}
+              type="text"
+            />
+
             <button className={styles.button}>send</button>
           </form>
         </div>

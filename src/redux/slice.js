@@ -18,12 +18,28 @@ const contactsSlice = createSlice({
   },
 });
 
-const userNameSlice = createSlice({
-  name: 'userName',
+const filterSlice = createSlice({
+  name: 'filter',
   initialState: '',
   reducers: {
-    setUserName: (state, action) => action.payload,
-    resetUserName: (state, action) => (state = ''),
+    changeFilter: (state, action) => action.payload,
+  },
+});
+
+const sessionSlice = createSlice({
+  name: 'session',
+  initialState: {
+    token: '',
+    imgUser: null,
+    nameUser: '',
+  },
+  reducers: {
+    setAccessToken: (state, action) => ({
+      ...state,
+      token: action.payload,
+    }),
+    setImgUser: (state, action) => ({ ...state, imgUser: action.payload }),
+    setNameUser: (state, action) => ({ ...state, nameUser: action.payload }),
   },
 });
 
@@ -32,11 +48,14 @@ export const {
   addNewMessage,
   removeContact,
 } = contactsSlice.actions;
-
-const userName = userNameSlice.reducer;
+export const { changeFilter } = filterSlice.actions;
+export const { setAccessToken, setImgUser, setNameUser } = sessionSlice.actions;
+const session = sessionSlice.reducer;
 const contacts = contactsSlice.reducer;
+const filter = filterSlice.reducer;
 
 export default combineReducers({
   contacts,
-  userName,
+  filter,
+  session,
 });

@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import Chat from '../Chat/Chat';
 import { Route, NavLink, useLocation } from 'react-router-dom';
 import routes from '../../services/routes';
+import moment from 'moment';
 
 const ContactsList = props => {
   const contacts = useSelector(state => state.contacts);
@@ -23,7 +24,6 @@ const ContactsList = props => {
           <li>
             <NavLink to={routes.contact} className={styles.title}>
               Contacts
-              {/* <h3 className={styles.title}>Contacts</h3> */}
             </NavLink>
           </li>
           {visibleContacts.map(({ id, img, name, historyM, date }) => (
@@ -46,10 +46,8 @@ const ContactsList = props => {
                 </div>
                 <p className={styles.date}>
                   {historyM.length > 0
-                    ? new Date(
-                        historyM[historyM.length - 1].date,
-                      ).toLocaleDateString()
-                    : new Date(date).toLocaleDateString()}
+                    ? moment(historyM[historyM.length - 1].date).format('ll')
+                    : moment(date).format('ll')}
                 </p>
               </NavLink>
             </li>

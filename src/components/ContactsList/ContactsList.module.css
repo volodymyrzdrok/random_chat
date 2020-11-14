@@ -57,7 +57,7 @@ background-color: #3a6d99;
 }
 .descContainer{
     text-align: left;
-    width: 234px;
+    width: 220px;
 
 }
 .name{
@@ -92,4 +92,7 @@ background-color: #3a6d99;
 .itemActive .date{
     
     color: #fff;
+}
+.item:hover .date{
+    color:  #3a6d99;
 }

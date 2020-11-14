@@ -1,11 +1,10 @@
 .chatContainer{
-   width: calc(100vw - 380px);
+  width: calc(100vw - 380px);
     margin-top: -135px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     background-color:rgba(242, 242, 242,0.6);
-    /* height: 100vh; */
     overflow-y: hidden;
 }
 .titleContainer{
@@ -44,6 +43,7 @@ letter-spacing: 1.5px;
   padding: 10px 30px;   
   overflow-y: scroll;
     scroll-behavior: smooth;
+    /* overflow-x: hidden; */
 }
 .list::-webkit-scrollbar {
     width: 8px;
@@ -58,16 +58,33 @@ letter-spacing: 1.5px;
   }
 .item{
     margin-bottom: 5px;
+ 
+}
+.itemTextImgContainer{
+    display: flex;
+    align-items: center;
+}
+
+.itemTextNOImgContainer{
+    
+    /* display: flex; */
+    /* flex-wrap: wrap; */
 }
 
 .itemMyMessage{
     composes: item;
-    display: flex;
-    justify-content: flex-end;
-}
-.itemImg{
-    width: 30px;
-    height: 30px;
+    /* margin-left: 40%; */
+     /* display: flex;
+     flex-direction: column;
+     align-items: flex-end;  */
+    }
+    .itemBot{
+        composes:  item;
+    }
+    
+    .itemImg{
+        width: 40px;
+        margin-right: 8px;
     border-radius: 50%;
 }
 
@@ -76,26 +93,40 @@ letter-spacing: 1.5px;
     margin: 0;
     padding: 10px;
     border-radius: 20px;
-    background-color: rgba(104, 102, 102,0.3);
-max-width: 50%;
+    background-color: rgba(104, 102, 102, 0.3);
     
 }
 .itemText:first-letter{
     text-transform: capitalize;
 }
-.itemTextMyMessage{
+.itemTextBot{
     composes:  itemText;
-color: aliceblue;
-background-color: rgba(0, 0, 0, 0.8);
+    color: aliceblue;
+    background-color: rgba(0, 0, 0, 0.8);
+    max-width: 55%;
+    
 }
+.itemTextMy
+{composes:  itemText;
+    /* width: inherit; */
+    
+    /* max-width: 55%; */
+   
+}
+
 .itemData{
     font-size: 10px;
+   color:rgb(123, 123, 123);
+   
 }
+
 
 .form{
 position: relative;
 padding: 20px 30px;
 background-color:#F2F2F2;
+
+border-top:1px solid rgba(2, 2, 2, 0.2);
 }
 
 .input{

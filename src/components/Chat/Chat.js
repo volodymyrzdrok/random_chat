@@ -5,6 +5,7 @@ import { fetchRandomAnswer } from '../../services/randomAnswerApi';
 import { useSelector, useDispatch } from 'react-redux';
 import { addNewMessage, removeContact } from '../../redux/slice';
 import { v4 } from 'uuid';
+import moment from 'moment';
 
 const Chat = () => {
   const contacts = useSelector(state => state.contacts);
@@ -95,24 +96,33 @@ const Chat = () => {
               contact.historyM.map(item => (
                 <li
                   key={item.id}
-                  className={item.bot ? styles.item : styles.itemMyMessage}
+                  className={item.bot ? styles.itemBot : styles.itemMyMessage}
                 >
-                  {item.bot && (
-                    <img
-                      className={styles.itemImg}
-                      src={contact.img}
-                      alt={contact.name}
-                    />
-                  )}
-                  <p
+                  <div
                     className={
-                      item.bot ? styles.itemTextMyMessage : styles.itemText
+                      item.bot
+                        ? styles.itemTextImgContainer
+                        : styles.itemTextNOImgContainer
                     }
                   >
-                    {item.message}
-                  </p>
+                    {item.bot && (
+                      <img
+                        className={styles.itemImg}
+                        src={contact.img}
+                        alt={contact.name}
+                      />
+                    )}
+
+                    <p
+                      className={
+                        item.bot ? styles.itemTextBot : styles.itemTextMy
+                      }
+                    >
+                      {item.message}
+                    </p>
+                  </div>
                   <span className={styles.itemData}>
-                    {new Date(item.date).toLocaleString()}
+                    {moment(item.date).format('l,LT ')}
                   </span>
                 </li>
               ))}

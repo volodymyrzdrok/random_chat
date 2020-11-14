@@ -31,13 +31,16 @@ letter-spacing: 1.5px;
 
 
 }
-.titleButton{
-    height: 25px; 
-    
-    font-size: 10px;
-    background-color: black;
-    color: #fff;
+.titleButtons{
+    display: flex;
+    align-items: center;
 }
+
+.titleButton{
+    all:unset;
+    cursor: pointer;
+}
+
 .list{
    max-height: calc(100vh - 194px);
   padding: 10px 30px;   
@@ -73,7 +76,7 @@ letter-spacing: 1.5px;
      display: flex;
      flex-direction: column;
      align-items: flex-end; 
-     
+     margin-left: 400px;
     }
     .itemBot{
         composes:  item;
@@ -105,6 +108,7 @@ letter-spacing: 1.5px;
 }
 .itemTextMy
 {composes:  itemText;
+     /* max-width: 55%; */
    
 }
 
@@ -120,11 +124,11 @@ letter-spacing: 1.5px;
 }
 
 .form{
-position: relative;
-padding: 20px 30px;
-background-color:#F2F2F2;
-
-border-top:1px solid rgba(2, 2, 2, 0.2);
+    padding: 20px 30px;
+    background-color:#F2F2F2;
+    
+    border-top:1px solid rgba(2, 2, 2, 0.2);
+    position: relative;
 }
 
 .input{
@@ -143,9 +147,10 @@ border-top:1px solid rgba(2, 2, 2, 0.2);
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), 0 4px 4px rgba(0, 0, 0, 0.1);
   
   }
-.button{
+.buttonSend{
+    all: unset;
 position: absolute;
-top: 40px;
-right: 100px;
-    height: 30px;
+ right: 104px;
+/* top: 300px;  */
+   /* cursor: pointer; */
 }

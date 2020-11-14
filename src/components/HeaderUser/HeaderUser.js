@@ -10,7 +10,8 @@ import { addNewContact, changeFilter } from '../../redux/slice';
 import routes from '../../services/routes';
 import { GoogleLogout } from 'react-google-login';
 import { setAccessToken, setImgUser, setNameUser } from '../../redux/slice';
-
+import { Search } from '../../images/sprite';
+import { Exit } from '../../images/sprite';
 import defaultAvatar from './leo.png';
 
 const HeaderUser = () => {
@@ -75,7 +76,9 @@ const HeaderUser = () => {
             buttonText=""
             onLogoutSuccess={logout}
             onFailure={handleLogoutFailure}
-          ></GoogleLogout>
+          >
+            <Exit scale="30" />
+          </GoogleLogout>
         </div>
         <form
           onSubmit={() => {
@@ -92,7 +95,9 @@ const HeaderUser = () => {
             value={valueFilter}
             onChange={e => dispatch(changeFilter(e.target.value))}
           />
-          <button className={styles.button}>a</button>
+          <button className={styles.button}>
+            <Search />
+          </button>
         </form>
       </div>
       <Route

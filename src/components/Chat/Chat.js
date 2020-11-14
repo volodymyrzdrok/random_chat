@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { addNewMessage, removeContact } from '../../redux/slice';
 import { v4 } from 'uuid';
 import moment from 'moment';
+import { DeleteMessage, DeleteContact, Telegram } from '../../images/sprite';
 
 const Chat = () => {
   const contacts = useSelector(state => state.contacts);
@@ -76,18 +77,18 @@ const Chat = () => {
               width="50"
             />
             <h3 className={styles.titleName}>{contact.name}</h3>
-            <div className="">
-              <button
-                onClick={() => deleteContact(contact.id)}
-                className={styles.titleButton}
-              >
-                delete contact
-              </button>
+            <div className={styles.titleButtons}>
               <button
                 onClick={() => deleteHistoryM()}
                 className={styles.titleButton}
               >
-                delete history
+                <DeleteMessage scale="40" />
+              </button>
+              <button
+                onClick={() => deleteContact(contact.id)}
+                className={styles.titleButton}
+              >
+                <DeleteContact scale="45" />
               </button>
             </div>
           </div>
@@ -144,7 +145,9 @@ const Chat = () => {
               type="text"
             />
 
-            <button className={styles.button}>send</button>
+            <button className={styles.buttonSend}>
+              <Telegram scale="35" />
+            </button>
           </form>
         </div>
       )}

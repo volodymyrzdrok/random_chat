@@ -50,8 +50,9 @@ const ContactsList = props => {
                 <div className={styles.descContainer}>
                   <p className={styles.name}>{name}</p>
                   <p className={styles.description}>
-                    {historyM.length > 0 &&
-                      historyM[historyM.length - 1].message}
+                    {historyM.length > 0
+                      ? historyM[historyM.length - 1].message
+                      : `you added contact: ${name}`}
                   </p>
                 </div>
                 <p className={styles.date}>

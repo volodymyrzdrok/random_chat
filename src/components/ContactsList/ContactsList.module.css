@@ -37,30 +37,32 @@
     height: 90px;  
     padding: 10px 2px 10px 20px;
 color: #222;
-text-transform: capitalize;
 transition: all 0.25s linear;
 border-bottom: 1.5px solid #F2F2F2;
 }
 .item:hover{
     background-color: #f0f4f7;
-
+    
 }
 .itemActive{
-background-color: #3a6d99;
+    background-color: #3a6d99;
     color: #fff;
-   
+    
 }
 .image{
     width: 50px;
+    
     border-radius: 50%;
     margin-right: 20px;
 }
 .descContainer{
     text-align: left;
     width: 220px;
-
+    
 }
+
 .name{
+    text-transform: capitalize;
     margin: 0;
     font-weight: 600;
     margin-bottom: 10px;
@@ -76,6 +78,9 @@ background-color: #3a6d99;
     text-overflow: ellipsis;
       white-space: nowrap;
       overflow: hidden;
+}
+.description::first-letter{
+    text-transform: capitalize;
 }
 .itemActive .description{
     color: #fff;

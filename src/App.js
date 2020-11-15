@@ -1,7 +1,6 @@
 import React, { Suspense, lazy, useEffect } from 'react';
 import { Switch, Route, Redirect, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import './App.css';
 import routes from './services/routes';
 
 const GoogleBtn = lazy(() => import('./components/Login/GoogleBtn'));

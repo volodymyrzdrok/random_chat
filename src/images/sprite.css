@@ -11,6 +11,12 @@
   transform: scale(1);
   margin-right: 30px;
 }
+@media screen and (max-width: 859px) {
+
+  .svg-DeleteMessage {
+    margin-right: 15px;
+  }
+}
 .svg-DeleteMessage:hover {
 filter: drop-shadow(2px 2px 1px rgba(58, 109, 153,0.3));
 transform: scale(1.04);
@@ -26,51 +32,24 @@ transform: scale(1.04);
 }
 
 .svg-Exit {
-
-  transition: all 0.25s linear;
-  transform: scale(1); 
+  fill:#115b9d;
   margin-left: -20px;
 }
 
-.svg-Exit:hover {
-  transform: scale(1.06); 
+.svg-Telegram {
+  transition: all 0.25s linear;
  
 }
-  /* }
-  .svg-Remove,
-  .svg-Edit {
-    cursor: pointer;
-  }
-  .svg-Logo {
-    fill: #8390a2;
-  }
-  
-  .svg-TimeLine,
-  .svg-Home,
-  .svg-Money {
-    fill: #aab3c0;
-  }
-  .svg-ArrowRight {
-    fill: #fff;
-  }
-  .svg-ArrowLeft {
-    fill: #fff;
-  }
-  
-  .svg-Error {
-    fill: #f9ca24;
-  }
-  
-  @media (min-width: 748px) {
-    .svg-Logo {
-      fill: #3a5374;
-    }
-  }
-  
-  @media (min-width: 1192px) {
-  }
-  
-  .svg-Remove,
-  .svg-Edit {
-    fill: #3a5374;
-  } */
+.svg-Telegram:hover {
+  filter: drop-shadow(4px 2px 1px rgba(58, 109, 153,0.2));
+}
+
+.svg-GoBack{
+  fill:#115b9d;
+  transition: all 0.25s linear;
+  transform: scale(1);
+}
+.svg-GoBack:hover{
+  transform: scale(1.04);
+
+}

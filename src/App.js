@@ -6,6 +6,7 @@ import routes from './services/routes';
 
 const GoogleBtn = lazy(() => import('./components/Login/GoogleBtn'));
 const HeaderUser = lazy(() => import('./components/HeaderUser/HeaderUser'));
+const Chat = lazy(() => import('./components/Chat/Chat'));
 
 const App = () => {
   const token = useSelector(state => state.session.token);
@@ -14,14 +15,19 @@ const App = () => {
   useEffect(() => {
     token ? history.push(routes.contact) : history.push(routes.login);
   }, [token, history]);
-
+  const widthW = document.documentElement.clientWidth;
   return (
     <>
       <Suspense fallback={null}>
         <Switch>
           <Route path={routes.login} component={GoogleBtn} />
-          <Route path={routes.contact} component={HeaderUser} />
-
+          {widthW > 860 && (
+            <Route path={routes.contact} component={HeaderUser} />
+          )}
+          {widthW < 860 && (
+            <Route exact path={routes.contact} component={HeaderUser} />
+          )}
+          {widthW < 860 && <Route path={routes.contactId} component={Chat} />}
           <Redirect to={routes.contact} />
         </Switch>
       </Suspense>

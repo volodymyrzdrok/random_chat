@@ -1,12 +1,5 @@
 import React from 'react';
 import './sprite.css';
-// import { Remove, Edit } from "../../Components/SVG/sprite";
-
-{
-  /* <button className={styles.button} onClick={() => dispatch(modalDel(el._id))}>
-                        <Remove scale="18" />
-                      </button> */
-}
 
 const initialScale = '24';
 
@@ -69,6 +62,22 @@ export const Exit = ({ scale = initialScale }) => {
       <path d="M60.41 33.47a1 1 0 01-1-1v-2.91a1 1 0 012 0v2.91a1 1 0 01-1 1zM13.659 68.306a1 1 0 01-1-1V6.2a1 1 0 011-1h14.82a1 1 0 010 2h-13.82v60.106a1 1 0 01-1 1z" />
       <path d="M19.307 68.306a1 1 0 01-1-1V12.041a1 1 0 011-1h9.165a1 1 0 010 2h-8.165v54.265a1 1 0 01-1 1z" />
       <path d="M28.472 68.306H3.049a1 1 0 010-2h25.423a1 1 0 010 2zM70.951 68.306H55.643a1 1 0 010-2h15.308a1 1 0 010 2zM35.42 40.614A3.614 3.614 0 1139.034 37a3.618 3.618 0 01-3.614 3.614zm0-5.228A1.614 1.614 0 1037.034 37a1.616 1.616 0 00-1.614-1.614z" />
+    </svg>
+  );
+};
+
+export const GoBack = ({ scale = initialScale }) => {
+  return (
+    <svg
+      className="svg-GoBack"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width={scale}
+      height={scale}
+    >
+      <path d="M22.5 12.5h-15a.5.5 0 010-1h15a.5.5 0 010 1z" />
+      <path d="M11.5 16.5a.502.502 0 01-.354-.146l-4-4a.5.5 0 010-.707l4-4a.5.5 0 01.707.707L8.207 12l3.646 3.646a.5.5 0 01-.353.854z" />
+      <path d="M11 23C4.935 23 0 18.065 0 12S4.935 1 11 1c4.655 0 8.823 2.947 10.372 7.333a.5.5 0 01-.943.333A10.013 10.013 0 0011 2C5.486 2 1 6.486 1 12s4.486 10 10 10a10.01 10.01 0 009.428-6.667.5.5 0 01.943.333A11.012 11.012 0 0111 23z" />
     </svg>
   );
 };

@@ -1,156 +1,242 @@
-.chatContainer{
-  width: calc(100vw - 380px);
-    margin-top: -135px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background-color:rgba(242, 242, 242,0.6);
-    overflow-y: hidden;
-}
-.titleContainer{
-    display: flex;
-    justify-content: space-around   ;
-    align-items: center;
-    border-bottom: 1px solid rgba(2, 2, 2, 0.2);
-    border-left: 1px solid rgba(2, 2, 2, 0.2);
- 
-   padding: 10px 30px 5px 30px;   
-    background-color:#F2F2F2;
 
-}
-.titleImg{
-    width: 50px;
-    border-radius: 50%;
-}
-.titleName{
-margin: 0;
-text-transform: capitalize;
-color: #1e4d76;
-font-size: 30px;
-letter-spacing: 1.5px;
-
-
-}
-.titleButtons{
-    display: flex;
-    align-items: center;
-}
-
-.titleButton{
-    all:unset;
-    cursor: pointer;
-}
-
-.list{
-   max-height: calc(100vh - 194px);
-  padding: 10px 30px;   
-  overflow-y: scroll;
-    scroll-behavior: smooth;
-}
-.list::-webkit-scrollbar {
-    width: 8px;
+.bcContainer{
+    display: none;
   }
-  .list::-webkit-scrollbar-track {
-    background: #F2F2F2;
-  }
- 
-  .list::-webkit-scrollbar-thumb {
-    background: #979797;
-    border-radius: 1px;
-  }
-.item{
-    margin-bottom: 5px;
- 
-}
-.itemTextImgContainer{
-    display: flex;
-    align-items: center;
-}
-
-.itemTextNOImgContainer{
-}
-
-.itemMyMessage{
-    composes: item;
-    
-     display: flex;
-     flex-direction: column;
-     align-items: flex-end; 
-     margin-left: 400px;
-    }
-    .itemBot{
-        composes:  item;
-    }
-    
-    .itemImg{
-        width: 40px;
-        margin-right: 8px;
-    border-radius: 50%;
-}
-
-.itemText{
-    display: inline-block;
-    margin: 0;
-    padding: 10px;
-    border-radius: 20px;
-    background-color: rgba(104, 102, 102, 0.3);
-    
-}
-.itemText:first-letter{
-    text-transform: capitalize;
-}
-.itemTextBot{
-    composes:  itemText;
-    color: aliceblue;
-    background-color: rgba(0, 0, 0, 0.8);
-    max-width: 55%;
-    
-}
-.itemTextMy
-{composes:  itemText;
-     /* max-width: 55%; */
    
-}
-
-.itemData{
-    font-size: 10px;
-   color:rgb(123, 123, 123);
-
-}
-.itemDataBot{
-
-    composes:  itemData;
-    margin-left: 60px;
-}
-
-.form{
-    padding: 20px 30px;
-    background-color:#F2F2F2;
+  
+              @media screen and (min-width: 860px) {
+                  .bcContainer{
+                      width: calc(100vw - 380px);
+                      margin-top: -135px;
+                      background: url('../../images/bcWallpaper.jpg');
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                  }
+                   
+                  .bcTitle{
+                      letter-spacing: 1px;
+                  color: #1e4d76;
+                  font-size: 35px;
+                  filter: drop-shadow(2px 2px 2px  rgba(30, 77, 118,0.4));
+                                 
+                              }
+                 
+              }
+  
+  .chatContainer{
     
-    border-top:1px solid rgba(2, 2, 2, 0.2);
-    position: relative;
-}
-
-.input{
-    padding:20px ;
-    border-radius: 50px;
-    width: 90%;
-    border: 1px solid rgba(2, 2, 2, 0.2);
-    transition: all 0.25s linear;
-    outline: none;
+      background-color:rgba(242, 242, 242,0.6);
+      overflow-y: hidden;
   }
-  .input::placeholder{
-      font-size: 16px;
-      letter-spacing: 1px;
-  }
-  .input:hover{
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), 0 4px 4px rgba(0, 0, 0, 0.1);
+  
+  .titleContainer{
+      display: flex;
+      justify-content: space-between   ;
+      align-items: center;
+      border-bottom: 1px solid rgba(2, 2, 2, 0.2);
+      border-left: 1px solid rgba(2, 2, 2, 0.2);
+   
+     padding: 10px 20px 5px 10px;   
+      background-color:#F2F2F2;
   
   }
-.buttonSend{
-    all: unset;
-position: absolute;
- right: 104px;
-/* top: 300px;  */
-   /* cursor: pointer; */
-}
+  
+  .titleImg{
+      width: 50px;
+      border-radius: 50%;
+  }
+  .titleName{
+  margin: 0;
+  text-transform: capitalize;
+  color: #1e4d76;
+  font-size: 30px;
+  letter-spacing: 1.5px;
+  
+  
+  }
+  .titleButtons{
+      display: flex;
+      align-items: center;
+  }
+  
+  .titleButton{
+      all:unset;
+      cursor: pointer;
+  }
+  
+  .list{
+      height: calc(100vh - 200px);
+    padding: 10px 10px;   
+    overflow-y: scroll;
+      scroll-behavior: smooth;
+   
+  }
+  
+  .list::-webkit-scrollbar {
+      width: 8px;
+    }
+    .list::-webkit-scrollbar-track {
+      background: #F2F2F2;
+    }
+   
+    .list::-webkit-scrollbar-thumb {
+      background: #979797;
+      border-radius: 1px;
+    }
+  .item{
+      margin-bottom: 5px;
+   
+  }
+  .itemTextImgContainer{
+      display: flex;
+      align-items: center;
+  }
+  
+  
+  .itemMyMessage{
+      composes: item;
+      
+       display: flex;
+       flex-direction: column;
+       align-items: flex-end; 
+       
+      }
+     
+      .itemBot{
+          composes:  item;
+      }
+      
+      .itemImg{
+          width: 40px;
+          margin-right: 8px;
+      border-radius: 50%;
+  }
+  
+  .itemText{
+      display: inline-block;
+      margin: 0;
+      padding: 10px;
+      border-radius: 20px;
+      background-color: rgba(104, 102, 102, 0.3);
+      
+  }
+  .itemText:first-letter{
+      text-transform: capitalize;
+  }
+  .itemTextBot{
+      composes:  itemText;
+      color: aliceblue;
+      background-color: rgba(0, 0, 0, 0.8);
+      max-width: 55%;
+      
+  }
+  .itemTextMy
+  {composes:  itemText;
+     
+  }
+  
+  .itemData{
+      font-size: 10px;
+     color:rgb(123, 123, 123);
+  
+  }
+  .itemDataBot{
+  
+      composes:  itemData;
+      margin-left: 60px;
+  }
+  
+  .form{
+      padding: 20px 30px;
+      background-color:#F2F2F2;
+      
+      border-top:1px solid rgba(2, 2, 2, 0.2);
+      position: relative;
+  }
+  .botLoaderMessage{
+  padding: 0;
+  
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: -4px;
+  left: 53px;
+  
+  
+  }
+  .descriptionLoader{
+    color: #115b9d;
+      margin: 0 20px 0  0;
+      font-size: 12px;
+   
+  }
+  .descriptionLoader::first-letter{
+     text-transform: capitalize;
+      
+  }
+  
+  
+  .input{
+      padding:20px ;
+      border-radius: 50px;
+      width: 90%;
+      border: 1px solid rgba(2, 2, 2, 0.2);
+      transition: all 0.25s linear;
+      outline: none;
+    }
+  
+    .input::placeholder{
+        font-size: 16px;
+        letter-spacing: 1px;
+    }
+    .input:hover{
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), 0 4px 4px rgba(0, 0, 0, 0.1);
+    
+    }
+  .buttonSend{
+      all: unset;
+  position: absolute;
+   right: 34px;
+  top: 25px; 
+     cursor: pointer;
+  }
+  
+  @media screen and (max-width: 859px) {
+      .form{
+          position: fixed;
+          bottom: 0;
+          width :-webkit-fill-available;
+         
+      }
+      .item:last-child{
+          margin-bottom: 45px;
+       
+      }
+  }
+  
+  @media screen and (min-width: 860px) {
+      .chatContainer{
+          width: calc(100vw - 380px);
+            margin-top: -135px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .titleContainer{
+          justify-content: space-around   ;
+          padding: 10px 30px 5px 30px; 
+        }
+        
+  .list{
+      max-height: calc(100vh - 194px);
+    padding: 10px 30px;   
+    
+  }
+  .itemMyMessage{margin-left: 400px;}
+  .buttonSend{
+  
+   right: 104px;
+  
+  }
+  }

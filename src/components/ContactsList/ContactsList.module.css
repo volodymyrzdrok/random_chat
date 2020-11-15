@@ -1,25 +1,21 @@
-.chatContent{
-    display: flex;
-    
-}
 
 .contactsList{
-    min-width: 380px;
     overflow-y: hidden;
 }
 
 .title{
     margin: 10px ;
     text-align: center;
-  color:  #3a6d99;
-  font-weight: 500;
-  display: block;
+    color:  #3a6d99;
+    font-weight: 500;
+    display: block;
 }
 .list{  
     max-height: calc(100vh - 135px);
     overflow-y: scroll;
     scroll-behavior: smooth;
 }
+                                               
    .list::-webkit-scrollbar {
     width: 4px;
   }
@@ -35,11 +31,16 @@
     display: flex;
     align-items: center;
     height: 90px;  
-    padding: 10px 2px 10px 20px;
+    padding: 10px 10px 10px 30px;
 color: #222;
 transition: all 0.25s linear;
 border-bottom: 1.5px solid #F2F2F2;
 }
+
+
+
+
+
 .item:hover{
     background-color: #f0f4f7;
     
@@ -53,12 +54,32 @@ border-bottom: 1.5px solid #F2F2F2;
     width: 50px;
     
     border-radius: 50%;
-    margin-right: 20px;
+    margin-right: 30px;
 }
 .descContainer{
     text-align: left;
-    width: 220px;
-    
+   width: 180px; 
+}
+
+
+@media screen and (min-width: 400px)and (max-width: 550px) {
+    .descContainer{
+        
+     width: 230px;
+    }
+    .item{
+        justify-content: space-between;
+    }
+}
+
+@media screen and (min-width: 551px)and (max-width: 859px) {
+    .descContainer{
+        
+     width: 400px;
+    }
+    .item{
+        justify-content: space-between;
+    }
 }
 
 .name{
@@ -66,6 +87,7 @@ border-bottom: 1.5px solid #F2F2F2;
     margin: 0;
     font-weight: 600;
     margin-bottom: 10px;
+    letter-spacing: 1px;
 }
 .item:hover .name{
     color: #222;
@@ -85,11 +107,74 @@ border-bottom: 1.5px solid #F2F2F2;
 .itemActive .description{
     color: #fff;
 }
+.botLoaderMessage{
+   display: none;
+    
+}
+.itemActive .botLoaderMessage{
+    display: block;
+    display: flex;
+    align-items: center;
+    
+} 
+
+.descriptionLoader{
+    color: #fff;
+    margin: 0;
+    
+}
+.descriptionLoader::first-letter{
+   text-transform: capitalize;
+    
+}
+
+
+.item:hover  .descriptionLoader{
+    color:  #3a6d99;
+    
+}
+.descLoaderPlus{
+    opacity: 0;
+    transition: all 0.3s linear;
+}
+
+.item:hover .descLoaderPlus{
+    opacity: 1;
+    color:  #3a6d99;
+}
+
 .date{
     color:  #3a6d99;
     font-size: 10px;
    text-align: right;
+   
 }
+
+@media screen and (min-width: 860px) {
+                                                    
+    .chatContent{
+        display: flex;
+        
+    }
+
+    .contactsList{
+        min-width: 380px;
+       
+    }
+    .item{
+        padding: 10px 2px 10px 20px;
+    }
+    .image{
+       
+        margin-right: 20px;
+    }
+    .descContainer{
+      
+        width: 220px;
+        
+    }
+}
+
 
 .item:hover .description{
     color:  #3a6d99;

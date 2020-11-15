@@ -18,11 +18,12 @@ const contactsSlice = createSlice({
   },
 });
 
-const filterSlice = createSlice({
-  name: 'filter',
-  initialState: '',
+const actionSlice = createSlice({
+  name: 'action',
+  initialState: { filter: '', botType: false },
   reducers: {
-    changeFilter: (state, action) => action.payload,
+    changeFilter: (state, action) => ({ ...state, filter: action.payload }),
+    botTypingText: (state, action) => ({ ...state, botType: action.payload }),
   },
 });
 
@@ -48,14 +49,14 @@ export const {
   addNewMessage,
   removeContact,
 } = contactsSlice.actions;
-export const { changeFilter } = filterSlice.actions;
+export const { changeFilter, botTypingText } = actionSlice.actions;
 export const { setAccessToken, setImgUser, setNameUser } = sessionSlice.actions;
 const session = sessionSlice.reducer;
 const contacts = contactsSlice.reducer;
-const filter = filterSlice.reducer;
+const action = actionSlice.reducer;
 
 export default combineReducers({
   contacts,
-  filter,
+  action,
   session,
 });

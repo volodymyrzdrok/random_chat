@@ -1,23 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import styles from './Chat.module.css';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import { fetchRandomAnswer } from '../../services/randomAnswerApi';
 import { useSelector, useDispatch } from 'react-redux';
-import { addNewMessage, removeContact } from '../../redux/slice';
+import { addNewMessage, removeContact, botTypingText } from '../../redux/slice';
 import { v4 } from 'uuid';
 import moment from 'moment';
-import { DeleteMessage, DeleteContact, Telegram } from '../../images/sprite';
+import {
+  DeleteMessage,
+  DeleteContact,
+  Telegram,
+  GoBack,
+} from '../../images/sprite';
+import Loader from '../Loader/Loader';
+import routes from '../../services/routes';
 
 const Chat = () => {
-  const contacts = useSelector(state => state.contacts);
   const [randomMessage, setRandomMessage] = useState(null);
+  const [randomObject, setRandomObject] = useState(null);
+  const contacts = useSelector(state => state.contacts);
+  const botType = useSelector(state => state.action.botType);
   const dispatch = useDispatch();
   let location = useLocation();
-  const contactId = location.pathname.slice(7);
-
+  let history = useHistory();
+  const contactId = location.pathname.slice(6);
   const contact = contacts.find(contact => String(contact.id) === contactId);
-
-  const [randomObject, setRandomObject] = useState(null);
 
   fetchRandomAnswer().then(result => setRandomMessage(result));
 
@@ -27,10 +34,16 @@ const Chat = () => {
         const historyM = [...contact.historyM, randomObject];
         const contactUpdate = { ...contact, historyM };
         dispatch(addNewMessage(contactUpdate));
-
         setRandomObject(null);
+        dispatch(botTypingText(false));
+        scrolling();
       }, 3000);
   }, [randomObject]);
+
+  const scrolling = () => {
+    const ulka = document.querySelector('#ulScroll');
+    ulka.scrollTop = 9999;
+  };
 
   const addMessage = e => {
     e.preventDefault();
@@ -46,6 +59,7 @@ const Chat = () => {
       const historyM = [...contact.historyM, messageNew];
       const contactUpdate = { ...contact, historyM };
       dispatch(addNewMessage(contactUpdate));
+      dispatch(botTypingText(true));
       setRandomObject({
         id: v4(),
         message: randomMessage,
@@ -57,6 +71,7 @@ const Chat = () => {
 
   const deleteContact = id => {
     dispatch(removeContact(id));
+    hendleGoBack();
   };
 
   const deleteHistoryM = () => {
@@ -65,11 +80,28 @@ const Chat = () => {
     dispatch(addNewMessage(contactUpdate));
   };
 
+  const hendleGoBack = () => {
+    const { state } = location;
+
+    if (state && state.from) {
+      history.push(state.from);
+    } else {
+      history.push(routes.contact);
+    }
+  };
+
+  const widthW = document.documentElement.clientWidth;
+
   return (
     <>
-      {contact && (
+      {contact ? (
         <div className={styles.chatContainer}>
           <div className={styles.titleContainer}>
+            {widthW < 860 && (
+              <button className={styles.titleButton} onClick={hendleGoBack}>
+                <GoBack scale="40" />
+              </button>
+            )}
             <img
               className={styles.titleImg}
               src={contact.img}
@@ -82,17 +114,17 @@ const Chat = () => {
                 onClick={() => deleteHistoryM()}
                 className={styles.titleButton}
               >
-                <DeleteMessage scale="40" />
+                <DeleteMessage scale={widthW > 860 ? '40' : '25'} />
               </button>
               <button
                 onClick={() => deleteContact(contact.id)}
                 className={styles.titleButton}
               >
-                <DeleteContact scale="45" />
+                <DeleteContact scale={widthW > 860 ? '45' : '30'} />
               </button>
             </div>
           </div>
-          <ul className={styles.list}>
+          <ul className={styles.list} id="ulScroll">
             {contact.historyM.length > 0 &&
               contact.historyM.map(item => (
                 <li
@@ -146,9 +178,24 @@ const Chat = () => {
             />
 
             <button className={styles.buttonSend}>
-              <Telegram scale="35" />
+              <Telegram scale="45" />
             </button>
+            {botType && (
+              <div className={styles.botLoaderMessage} id="loaderContainer">
+                <span className={styles.descriptionLoader}>
+                  <b> {contact.name}</b> is now writing you a message
+                </span>
+
+                <Loader colorL="#115b9d" typeLoader={'ThreeDots'} scale={25} />
+              </div>
+            )}
           </form>
+        </div>
+      ) : (
+        <div className={styles.bcContainer}>
+          <h3 className={styles.bcTitle}>
+            Please select a chat <br /> to start messaging
+          </h3>
         </div>
       )}
     </>

@@ -2,5 +2,5 @@ export default {
   home: '/',
   login: '/login',
   contact: '/chat',
-  contactId: '/:contactId',
+  contactId: '/chat/:contactId',
 };

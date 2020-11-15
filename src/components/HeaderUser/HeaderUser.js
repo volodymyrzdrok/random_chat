@@ -1,29 +1,29 @@
 import React, { useState } from 'react';
-import styles from './HeaderUser.module.css';
-import ContactsList from '../ContactsList/ContactsList';
 import { Route } from 'react-router-dom';
-// import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { v4 } from 'uuid';
-import { fetchRandomImages } from '../../services/randomAnswerApi';
-import { addNewContact, changeFilter } from '../../redux/slice';
-import routes from '../../services/routes';
-import { GoogleLogout } from 'react-google-login';
-import { setAccessToken, setImgUser, setNameUser } from '../../redux/slice';
-import { Search } from '../../images/sprite';
-import { Exit } from '../../images/sprite';
+import ContactsList from '../ContactsList/ContactsList';
+import styles from './HeaderUser.module.css';
 import defaultAvatar from './leo.png';
+import { GoogleLogout } from 'react-google-login';
+import { fetchRandomImages } from '../../services/randomAnswerApi';
+import { v4 } from 'uuid';
+import routes from '../../services/routes';
+import {
+  setAccessToken,
+  setImgUser,
+  setNameUser,
+  addNewContact,
+  changeFilter,
+} from '../../redux/slice';
+import { Search, Exit } from '../../images/sprite';
 
 const HeaderUser = () => {
-  const CLIENT_ID =
-    '1025667457262-dt6vresakr191gvfve3q1cdga5255ufr.apps.googleusercontent.com';
-
   const [imgAvatar, setImgAvatar] = useState(null);
-  const dispatch = useDispatch();
   const contacts = useSelector(state => state.contacts);
-  const valueFilter = useSelector(state => state.filter);
+  const valueFilter = useSelector(state => state.action.filter);
   const imgUser = useSelector(state => state.session.imgUser);
   const nameUser = useSelector(state => state.session.nameUser);
+  const dispatch = useDispatch();
 
   fetchRandomImages().then(result =>
     setImgAvatar(
@@ -47,7 +47,6 @@ const HeaderUser = () => {
       };
 
       dispatch(addNewContact(contact));
-      // valueFilter = '';
     }
   };
 
@@ -59,6 +58,9 @@ const HeaderUser = () => {
   const handleLogoutFailure = () => {
     alert('Failed to log out');
   };
+  const CLIENT_ID =
+    '1025667457262-dt6vresakr191gvfve3q1cdga5255ufr.apps.googleusercontent.com';
+
   return (
     <>
       <div className={styles.header}>
@@ -100,12 +102,7 @@ const HeaderUser = () => {
           </button>
         </form>
       </div>
-      <Route
-        path={routes.contact}
-        component={ContactsList}
-        // addContact={addContact}
-      />
-      {/* <ContactsList /> */}
+      <Route path={routes.contact} component={ContactsList} />
     </>
   );
 };

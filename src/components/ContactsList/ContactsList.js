@@ -1,14 +1,16 @@
 import React from 'react';
 import styles from './ContactsList.module.css';
+import { Route, NavLink, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Chat from '../Chat/Chat';
-import { Route, NavLink, useLocation } from 'react-router-dom';
 import routes from '../../services/routes';
 import moment from 'moment';
+import Loader from '../Loader/Loader';
 
 const ContactsList = props => {
   const contacts = useSelector(state => state.contacts);
-  const filter = useSelector(state => state.filter);
+  const filter = useSelector(state => state.action.filter);
+  const botType = useSelector(state => state.action.botType);
 
   const visibleContacts = contacts.filter(contact =>
     contact.name.toLowerCase().includes(filter.toLowerCase()),
@@ -17,6 +19,7 @@ const ContactsList = props => {
   let location = useLocation();
   const { url, path } = props.match;
 
+  const widthW = document.documentElement.clientWidth;
   return (
     <div className={styles.chatContent}>
       <div className={styles.contactsList}>
@@ -42,18 +45,33 @@ const ContactsList = props => {
                 activeClassName={styles.itemActive}
                 className={styles.item}
                 to={{
-                  pathname: `${url}/:${id}`,
+                  pathname: `${url}/${id}`,
                   state: { from: location },
                 }}
               >
                 <img className={styles.image} src={img} alt={name} />
                 <div className={styles.descContainer}>
                   <p className={styles.name}>{name}</p>
-                  <p className={styles.description}>
-                    {historyM.length > 0
-                      ? historyM[historyM.length - 1].message
-                      : `you added contact: ${name}`}
-                  </p>
+                  {!botType ? (
+                    <p className={styles.description}>
+                      {historyM.length > 0
+                        ? historyM[historyM.length - 1].message
+                        : `you added contact: ${name}`}
+                    </p>
+                  ) : (
+                    <div
+                      className={styles.botLoaderMessage}
+                      id="loaderContainer"
+                    >
+                      <p className={styles.descriptionLoader}>{name} prints</p>
+                      <b className={styles.descLoaderPlus}>. . .</b>
+                      <Loader
+                        colorL="#fff"
+                        typeLoader={'ThreeDots'}
+                        scale={30}
+                      />
+                    </div>
+                  )}
                 </div>
                 <p className={styles.date}>
                   {historyM.length > 0
@@ -66,7 +84,9 @@ const ContactsList = props => {
         </ul>
       </div>
 
-      <Route path={`${path}`} component={Chat} />
+      {widthW > 860 && (
+        <Route path={`${path}`} component={Chat} filter={path} />
+      )}
     </div>
   );
 };

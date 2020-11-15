@@ -1,0 +1,46 @@
+.Login{
+    min-height: 100vh;
+        min-width: 100vw;
+    background: url('../../images/bgLoginMob.jpg');
+  display: flex;
+  flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-size: cover;
+    background-repeat: no-repeat;
+    color: #fff ;
+
+}
+.loginTitle{
+    font-size: 35px;
+    margin-bottom: 0;
+    filter: drop-shadow(2px 2px 2px  rgba(30, 77, 118,0.8));
+}
+.loginBtn{
+    transition: all 0.3s linear;
+    transform: scale(1.05);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.42), 0 1px 2px rgba(0, 0, 0, 0.64);
+}
+.loginBtn:hover{
+    box-shadow: 6 14px 28px rgba(0, 0, 0, 0.45), 0 10px 10px rgba(0, 0, 0, 0.62);
+    transform: scale(1.08);
+}
+.loginSubTitle{
+    font-size: 20px;
+    filter: drop-shadow(2px 2px 2px  rgba(30, 77, 118,0.8));
+
+}
+@media screen and (min-width: 560px) {
+
+    .Login{
+       
+        background: url('../../images/bgLoginDesk.jpg');
+        background-size: cover;
+    
+    }
+    .loginTitle{
+        font-size: 40px;
+        
+        }
+        
+}

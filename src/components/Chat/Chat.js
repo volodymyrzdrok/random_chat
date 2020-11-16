@@ -4,6 +4,7 @@ import { useLocation, useHistory } from 'react-router-dom';
 import { fetchRandomAnswer } from '../../services/randomAnswerApi';
 import { useSelector, useDispatch } from 'react-redux';
 import { addNewMessage, removeContact, botTypingText } from '../../redux/slice';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { v4 } from 'uuid';
 import moment from 'moment';
 import {
@@ -14,6 +15,8 @@ import {
 } from '../../images/sprite';
 import Loader from '../Loader/Loader';
 import routes from '../../services/routes';
+import animation from './animation.module.css';
+import animationBot from './animationBot.module.css';
 
 const Chat = () => {
   const [randomMessage, setRandomMessage] = useState(null);
@@ -29,7 +32,7 @@ const Chat = () => {
   fetchRandomAnswer().then(result => setRandomMessage(result));
 
   useEffect(() => {
-    if (randomObject)
+    if (randomObject) {
       setTimeout(() => {
         const historyM = [...contact.historyM, randomObject];
         const contactUpdate = { ...contact, historyM };
@@ -38,6 +41,7 @@ const Chat = () => {
         dispatch(botTypingText(false));
         scrolling();
       }, 3000);
+    }
   }, [randomObject]);
 
   const scrolling = () => {
@@ -47,6 +51,7 @@ const Chat = () => {
 
   const addMessage = e => {
     e.preventDefault();
+    scrolling();
     if (e.target[0].value.replace(/\s/g, '') === '') {
       alert('некоректні дані!');
     } else {
@@ -124,44 +129,51 @@ const Chat = () => {
               </button>
             </div>
           </div>
-          <ul className={styles.list} id="ulScroll">
+          <TransitionGroup component="ul" className={styles.list} id="ulScroll">
             {contact.historyM.length > 0 &&
               contact.historyM.map(item => (
-                <li
+                <CSSTransition
                   key={item.id}
-                  className={item.bot ? styles.itemBot : styles.itemMyMessage}
+                  timeout={380}
+                  classNames={item.bot ? animationBot : animation}
                 >
-                  <div
-                    className={
-                      item.bot
-                        ? styles.itemTextImgContainer
-                        : styles.itemTextNOImgContainer
-                    }
+                  <li
+                    className={item.bot ? styles.itemBot : styles.itemMyMessage}
                   >
-                    {item.bot && (
-                      <img
-                        className={styles.itemImg}
-                        src={contact.img}
-                        alt={contact.name}
-                      />
-                    )}
-
-                    <p
+                    <div
                       className={
-                        item.bot ? styles.itemTextBot : styles.itemTextMy
+                        item.bot
+                          ? styles.itemTextImgContainer
+                          : styles.itemTextNOImgContainer
                       }
                     >
-                      {item.message}
-                    </p>
-                  </div>
-                  <span
-                    className={item.bot ? styles.itemDataBot : styles.itemData}
-                  >
-                    {moment(item.date).format('l,LT ')}
-                  </span>
-                </li>
+                      {item.bot && (
+                        <img
+                          className={styles.itemImg}
+                          src={contact.img}
+                          alt={contact.name}
+                        />
+                      )}
+
+                      <p
+                        className={
+                          item.bot ? styles.itemTextBot : styles.itemTextMy
+                        }
+                      >
+                        {item.message}
+                      </p>
+                    </div>
+                    <span
+                      className={
+                        item.bot ? styles.itemDataBot : styles.itemData
+                      }
+                    >
+                      {moment(item.date).format('l,LT ')}
+                    </span>
+                  </li>
+                </CSSTransition>
               ))}
-          </ul>
+          </TransitionGroup>
           <form
             type="submit"
             onSubmit={e => {

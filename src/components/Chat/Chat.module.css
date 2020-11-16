@@ -70,6 +70,8 @@
     padding: 10px 10px;   
     overflow-y: scroll;
       scroll-behavior: smooth;
+
+      overflow-x: hidden;
    
   }
   
@@ -154,17 +156,7 @@
       border-top:1px solid rgba(2, 2, 2, 0.2);
       position: relative;
   }
-  .botLoaderMessage{
-  padding: 0;
   
-  display: flex;
-  align-items: center;
-  position: absolute;
-  top: -4px;
-  left: 53px;
-  
-  
-  }
   .descriptionLoader{
     color: #115b9d;
       margin: 0 20px 0  0;
@@ -184,7 +176,20 @@
       border: 1px solid rgba(2, 2, 2, 0.2);
       transition: all 0.25s linear;
       outline: none;
+      
     }
+    .botLoaderMessage{
+        padding: 0;
+        
+        display: flex;
+        align-items: center;
+        position: absolute;
+        top: -4px;
+        left: 53px;
+        
+     
+        
+        }
   
     .input::placeholder{
         font-size: 16px;
@@ -240,3 +245,17 @@
   
   }
   }
+  @media screen and (min-width: 455px) and (max-width: 858px) {
+      
+      .buttonSend{
+          
+          right: 83px;
+          
+        }
+    }
+                  @media screen and (min-width: 1650px) {
+                    .buttonSend{
+                
+                        right: 151px;
+                    }
+                  }

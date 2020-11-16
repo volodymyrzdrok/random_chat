@@ -14,7 +14,9 @@ const App = () => {
   useEffect(() => {
     token ? history.push(routes.contact) : history.push(routes.login);
   }, [token, history]);
+
   const widthW = document.documentElement.clientWidth;
+
   return (
     <>
       <Suspense fallback={null}>

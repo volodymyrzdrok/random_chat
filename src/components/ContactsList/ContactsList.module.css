@@ -161,6 +161,11 @@ border-bottom: 1.5px solid #F2F2F2;
         min-width: 380px;
        
     }
+    .list{
+
+        height: calc(100vh - 135px);
+
+    }
     .item{
         padding: 10px 2px 10px 20px;
     }

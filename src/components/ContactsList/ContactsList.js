@@ -1,11 +1,13 @@
 import React from 'react';
 import styles from './ContactsList.module.css';
 import { Route, NavLink, useLocation } from 'react-router-dom';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { useSelector } from 'react-redux';
 import Chat from '../Chat/Chat';
 import routes from '../../services/routes';
 import moment from 'moment';
 import Loader from '../Loader/Loader';
+import animation from './animation.module.css';
 
 const ContactsList = props => {
   const contacts = useSelector(state => state.contacts);
@@ -23,7 +25,7 @@ const ContactsList = props => {
   return (
     <div className={styles.chatContent}>
       <div className={styles.contactsList}>
-        <ul className={styles.list}>
+        <TransitionGroup component="ul" className={styles.list}>
           <li>
             <NavLink to={routes.contact} className={styles.title}>
               Contacts
@@ -40,48 +42,52 @@ const ContactsList = props => {
           )}
 
           {visibleContacts.map(({ id, img, name, historyM, date }) => (
-            <li key={id}>
-              <NavLink
-                activeClassName={styles.itemActive}
-                className={styles.item}
-                to={{
-                  pathname: `${url}/${id}`,
-                  state: { from: location },
-                }}
-              >
-                <img className={styles.image} src={img} alt={name} />
-                <div className={styles.descContainer}>
-                  <p className={styles.name}>{name}</p>
-                  {!botType ? (
-                    <p className={styles.description}>
-                      {historyM.length > 0
-                        ? historyM[historyM.length - 1].message
-                        : `you added contact: ${name}`}
-                    </p>
-                  ) : (
-                    <div
-                      className={styles.botLoaderMessage}
-                      id="loaderContainer"
-                    >
-                      <p className={styles.descriptionLoader}>{name} prints</p>
-                      <b className={styles.descLoaderPlus}>. . .</b>
-                      <Loader
-                        colorL="#fff"
-                        typeLoader={'ThreeDots'}
-                        scale={30}
-                      />
-                    </div>
-                  )}
-                </div>
-                <p className={styles.date}>
-                  {historyM.length > 0
-                    ? moment(historyM[historyM.length - 1].date).format('ll')
-                    : moment(date).format('ll')}
-                </p>
-              </NavLink>
-            </li>
+            <CSSTransition key={id} timeout={380} classNames={animation}>
+              <li>
+                <NavLink
+                  activeClassName={styles.itemActive}
+                  className={styles.item}
+                  to={{
+                    pathname: `${url}/${id}`,
+                    state: { from: location },
+                  }}
+                >
+                  <img className={styles.image} src={img} alt={name} />
+                  <div className={styles.descContainer}>
+                    <p className={styles.name}>{name}</p>
+                    {!botType ? (
+                      <p className={styles.description}>
+                        {historyM.length > 0
+                          ? historyM[historyM.length - 1].message
+                          : `you added contact: ${name}`}
+                      </p>
+                    ) : (
+                      <div
+                        className={styles.botLoaderMessage}
+                        id="loaderContainer"
+                      >
+                        <p className={styles.descriptionLoader}>
+                          {name} prints
+                        </p>
+                        <b className={styles.descLoaderPlus}>. . .</b>
+                        <Loader
+                          colorL="#fff"
+                          typeLoader={'ThreeDots'}
+                          scale={30}
+                        />
+                      </div>
+                    )}
+                  </div>
+                  <p className={styles.date}>
+                    {historyM.length > 0
+                      ? moment(historyM[historyM.length - 1].date).format('ll')
+                      : moment(date).format('ll')}
+                  </p>
+                </NavLink>
+              </li>
+            </CSSTransition>
           ))}
-        </ul>
+        </TransitionGroup>
       </div>
 
       {widthW > 860 && (

@@ -1,6 +1,6 @@
 # Random Chat App
 
-Random Chat App is a web application that allows users to chat with each other in real-time. The app provides a user-friendly interface and includes features such as a static list of contacts, chat history, automatic responses, contact search, message persistence after page reload, and login via Gmail.
+Random Chat App is a web application that allows invented users to chat with each other in real-time. The app provides a user-friendly interface and includes features such as a static list of contacts, chat history, automatic responses, contact search, message persistence after page reload, and login via Gmail.
 
 ## Features:
 - **Static List of Contacts:** Upon starting the application, users have access to a static list of contacts.
